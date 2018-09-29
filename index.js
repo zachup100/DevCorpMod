@@ -24,17 +24,17 @@ rbx.login(username, password).then(function() {
   console.log("Login was successful.");
   var onWallPost = rbx.onWallPost({group: groupId});
   onWallPost.on("data", function(data) {
-	console.log("New wall post detected.")
-    var found = 0;
-    for (let phase of keywords) {
-      if (data.content.toLowerCase().search(phase) != -1) found+=5;
-    }
-    if (/\S+\.\S+/.exec(data.content)) {}
-    if (found >= 5) {
-      rbx.deleteWallPost({id:data.id, group:groupId}).catch(function(e) { });
-      console.log(process.env.RobloxUsername + " has deleted a post by " + data.author.name)
-    }
-  });
+	   console.log("New wall post detected.")
+     var found = 0;
+     for (let phase of keywords) {
+       if (data.content.toLowerCase().search(phase) != -1) found+=5;
+     }
+     if (/\S+\.\S+/.exec(data.content)) {}
+     if (found >= 5) {
+       rbx.deleteWallPost({id:data.id, group:groupId}).catch(function(e) { });
+       console.log(process.env.RobloxUsername + " has deleted a post by " + data.author.name)
+     }
+   });
   onWallPost.on("close", function(e) { console.log("The event has disconnected!"); });
   onWallPost.on("error", function(e) {});
 
