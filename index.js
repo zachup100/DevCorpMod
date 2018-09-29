@@ -1,6 +1,5 @@
 var rbx = require('noblox.js');
 var request = require('request');
-var http = require('http');
 
 var username = process.env.RobloxUsername;
 var password = process.env.RobloxPassword;
@@ -20,8 +19,6 @@ var keywords = [
   "rewardtool.se",
   "rewardtool"
 ];
-
-http.createServer(onRequest).listen(process.env.PORT || 6000)
 
 rbx.login(username, password).then(function() {
   console.log("LoggedIn");
