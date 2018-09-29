@@ -20,14 +20,16 @@ var keywords = [
   "rewardtool"
 ];
 
+console.log("Attempting to log into ROBLOX as \"" + process.env.RobloxUsername + "\"...");
 rbx.login(username, password).then(function() {
-  console.log("LoggedIn");
+  console.log("Login was successful.");
 
   var onWallPost = rbx.onWallPost({group: groupId});
   onWallPost.on("data", function(data) {
 	console.log("New wall post detected.")
     var found = 0;
     for (let phase of keywords) {
+      console.log("word: " + phase)
       if (data.content.toLowerCase().search(phase) != -1) found+=5;
     }
     if (/\S+\.\S+/.exec(data.content)) {
