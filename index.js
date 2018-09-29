@@ -1,5 +1,6 @@
 var rbx = require('noblox.js');
 var request = require('request');
+var http = require('http');
 
 var username = process.env.RobloxUsername;
 var password = process.env.RobloxPassword;
