@@ -29,12 +29,12 @@ rbx.login(username, password).then(function() {
 	console.log("New wall post detected.")
     var found = 0;
     for (let phase of keywords) {
-      console.log(data.content.toLowerCase().search(phase))
       if (data.content.toLowerCase().search(phase) != -1) found+=5;
     }
     if (/\S+\.\S+/.exec(data.content)) {
 
     }
+    console.log(found)
     if (found >= 5) {
         console.log("Removing post with `" + data.content + "`` content by " + message.author.name + "!");
       rbx.deleteWallPost({id:data.id, group:groupId}).catch(function(e) { });
