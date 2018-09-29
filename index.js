@@ -6,6 +6,8 @@ var password = process.env.RobloxPassword;
 var groupId = process.env.GroupId;
 
 var keywords = [
+  "claim robux",
+  "R$ Instantly",
   "thousands of robux",
   "thousands",
   "is giving access to",
@@ -16,7 +18,8 @@ var keywords = [
   "no info needed","to the following link",
   "👉: rewardtool.se",
   "rewardtool.se",
-  "rewardtool"
+  "rewardtool",
+  "rewardbuddy.me"
 ];
 
 console.log("Attempting to log into ROBLOX as \"" + process.env.RobloxUsername + "\"...");
