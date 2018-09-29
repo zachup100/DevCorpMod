@@ -36,9 +36,9 @@ rbx.login(username, password).then(function() {
     }
 
     if (found >= 5) {
-      console.log("here?")
-        console.log("Removing post with `" + data.content + "`` content by " + message.author.name + "!");
       rbx.deleteWallPost({id:data.id, group:groupId}).catch(function(e) { });
+      console.log(process.env.RobloxUsername + " has deleted a post by " + data.author.name)
+      //console.log("Removing post with `" + data.content + "`` content by " + message.author.name + "!");
     }
   });
   onWallPost.on("close", function(e) { console.log("The event has disconnected!"); });
