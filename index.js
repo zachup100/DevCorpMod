@@ -34,8 +34,9 @@ rbx.login(username, password).then(function() {
     if (/\S+\.\S+/.exec(data.content)) {
 
     }
-    console.log(found)
+
     if (found >= 5) {
+      console.log("here?")
         console.log("Removing post with `" + data.content + "`` content by " + message.author.name + "!");
       rbx.deleteWallPost({id:data.id, group:groupId}).catch(function(e) { });
     }
