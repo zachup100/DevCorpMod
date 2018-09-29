@@ -48,10 +48,10 @@ rbx.login(username, password).then(function() {
       if (data.content.toLowerCase().search(phase) != -1) found+=5;
     }
     if (/\S+\.\S+/.exec(data.content)) {
-    
+
     }
     if (found >= 5) {
-        console.log("Removing post with `" + data.content + "`` content!");
+        console.log("Removing post with `" + data.content + "`` content by " + message.author.name + "!");
       rbx.deleteWallPost({id:data.id, group:groupId}).catch(function(e) { });
     }
   });
