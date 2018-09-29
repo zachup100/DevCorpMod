@@ -20,6 +20,8 @@ var keywords = [
   "rewardtool"
 ];
 
+http.createServer(onRequest).listen(process.env.PORT || 6000)
+
 rbx.login(username, password).then(function() {
   console.log("LoggedIn");
   rbx.getWall({group: groupId}).then(function(data){
