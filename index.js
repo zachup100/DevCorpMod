@@ -50,7 +50,7 @@ rbx.login(username, password).then(function() {
       }
       if (/\S+\.\S+/.exec(message.content)) {}
       if (found >= 5) {
-          rbx.deleteWallPost({id:message.id, group:groupId}).catch(function(e) { });
+          rbx.deleteWallPost({id:data.id, group:groupId}).catch(function(e) { });
           console.log(process.env.RobloxUsername + " has deleted a post by " + message.author.name );
       }
     }
