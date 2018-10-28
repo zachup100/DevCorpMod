@@ -45,14 +45,14 @@ ROBLOX.login(BOT_USERNAME,BOT_PASSWORD).then(function() {
     var Posts = data.posts
     for ( var i = 0; i < data.posts.length; i ++ ){
       var containsKeyworld = false
-      var message = data.posts[i].toLowerCase()
+      var message = Posts[i]
       for (let phase of KEYWORDS){
-        if (message.search(phrase) == -1) {
+        if (message.content.toLowerCase().search(phrase) == -1) {
           containsKeyword = true;
         }
       };
       if (containsKeyword == true) {
-        ROBLOX.deleteWallPost({id:data.id, group:GROUPID}).catch(function(e) {
+        ROBLOX.deleteWallPost({id:Posts.id, group:GROUPID}).catch(function(e) {
           console.log("[" + GROUPID + "] Error deleting post by " + data.author.name);
           console.log("[" + GROUPID + "] LOG: " + e);
         });
