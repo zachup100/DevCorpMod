@@ -61,21 +61,3 @@ ROBLOX.login(BOT_USERNAME,BOT_PASSWORD).then(function() {
     }
   });
 }).catch(function(e) {console.log("Failed to log in as " + BOT_USERNAME + ", are the ROBLOX servers down?");});
-
-
-
-
-rbx.getWall({group: groupId}).then(function(data){
-  var posts = data.posts
-  for(var i = 0; i < data.posts.length; i++) {
-    var found = 0;
-    var message = data.posts[i]
-    for (let phase of keywords) {
-      if (message.content.toLowerCase().search(phase) != -1) found +=5;
-    }
-    if (/\S+\.\S+/.exec(message.content)) {}
-    if (found >= 5) {
-        rbx.deleteWallPost({id:data.id, group:groupId}).catch(function(e) { });
-        console.log(process.env.RobloxUsername + " has deleted a post by " + message.author.name );
-    }
-  }
