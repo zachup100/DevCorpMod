@@ -1,59 +1,81 @@
-var rbx = require('noblox.js');
-var request = require('request');
+console.log("rblx-antiscams started, preparing for use...");
+var ROBLOX = require("noblox.js");
+var REQUEST = require("request");
+var DATE = new Date();
 
-var username = process.env.RobloxUsername;
-var password = process.env.RobloxPassword;
-var groupId = process.env.GroupId;
+var BOT_USERNAME = process.env.RobloxUsername;
+var BOT_PASSWORD = process.env.RobloxPassword;
+var GROUPID = process.env.GroupId;
 
-var keywords = [
-  "claim robux",
-  "R$ Instantly",
+var KEYWORDS = [
+  "free robux",
   "thousands of robux",
-  "thousands",
   "is giving access to",
   "giving access",
   "all game passes",
   "this is an official event",
   "official event",
-  "no info needed","to the following link",
-  "👉: rewardtool.se",
-  "rewardtool.se",
-  "rewardtool",
+  "no info needed",
+  "to the following link",
+  "claim robux",
+  "R$ Instantly",
   "rewardbuddy.me"
 ];
 
-console.log("Attempting to log into ROBLOX as \"" + process.env.RobloxUsername + "\"...");
-rbx.login(username, password).then(function() {
-  console.log("Login was successful.");
-  var onWallPost = rbx.onWallPost({group: groupId});
-  onWallPost.on("data", function(data) {
-     var found = 0;
-     for (let phase of keywords) {
-       if (data.content.toLowerCase().search(phase) != -1) found+=5;
-     }
-     if (/\S+\.\S+/.exec(data.content)) {}
-     if (found >= 5) {
-       rbx.deleteWallPost({id:data.id, group:groupId}).catch(function(e) { });
-       console.log(process.env.RobloxUsername + " has deleted a post by " + data.author.name)
-     }
-   });
-  onWallPost.on("close", function(e) { console.log("The event has disconnected!"); });
-  onWallPost.on("error", function(e) {});
-
-  rbx.getWall({group: groupId}).then(function(data){
-    var posts = data.posts
-    for(var i = 0; i < data.posts.length; i++) {
-      var found = 0;
+console.log("Attempting to login into ROBLOX.com");
+ROBLOX.login(BOT_USERNAME,BOT_PASSWORD).then(function() {
+  console.log("Successfully logged into BOT " + BOT_USERNAME);
+  ROBLOX.onWallPost({group: GROUPID}).on("data", function(data) {
+    console.log("[" + GROUPID + "] New post detected, checking context...");
+    var containsKeyword = false;
+    for (let phrase in KEYWORDS) {
+      if (data.content.toLowerCase().search(phrase) == -1) {
+        containsKeyword = true;
+      };
+    };
+    if (containsKeyword == true) {
+      ROBLOX.deleteWallPost({id:data.id, group:GROUPID}).catch(function(e) {
+        console.log("[" + GROUPID + "] Error deleting post by " + data.author.name);
+        console.log("[" + GROUPID + "] LOG: " + e);
+      });
+      console.log("[" + GROUPID + "] Removed post by " + data.author.name);
+    };
+  });
+  ROBLOX.getWall({group: GROUPID}).then(function(data){
+    var Posts = data.posts
+    for ( var i = 0; i < data.posts.length; i ++ ){
+      var containsKeyworld = false
       var message = data.posts[i]
-      for (let phase of keywords) {
-        if (message.content.toLowerCase().search(phase) != -1) found +=5;
-      }
-      if (/\S+\.\S+/.exec(message.content)) {}
-      if (found >= 5) {
-          rbx.deleteWallPost({id:data.id, group:groupId}).catch(function(e) { });
-          console.log(process.env.RobloxUsername + " has deleted a post by " + message.author.name );
-      }
+      for (let phase of keywords){
+        if (data.content.toLowerCase().search(phrase) == -1) {
+          containsKeyword = true;
+        }
+      };
+      if (containsKeyword == true) {
+        ROBLOX.deleteWallPost({id:data.id, group:GROUPID}).catch(function(e) {
+          console.log("[" + GROUPID + "] Error deleting post by " + data.author.name);
+          console.log("[" + GROUPID + "] LOG: " + e);
+        });
+        console.log("[" + GROUPID + "] Removed post by " + data.author.name);
+      };
     }
-  }).catch(function(e) { console.log(e); });
+  });
+}).catch(function(e) {console.log("Failed to log in as " + BOT_USERNAME + ", are the ROBLOX servers down?");});
 
-}).catch(function(e) {console.log('Unexpected error:', e);});
+
+
+
+rbx.getWall({group: groupId}).then(function(data){
+  var posts = data.posts
+  for(var i = 0; i < data.posts.length; i++) {
+    var found = 0;
+    var message = data.posts[i]
+    for (let phase of keywords) {
+      if (message.content.toLowerCase().search(phase) != -1) found +=5;
+    }
+    if (/\S+\.\S+/.exec(message.content)) {}
+    if (found >= 5) {
+        rbx.deleteWallPost({id:data.id, group:groupId}).catch(function(e) { });
+        console.log(process.env.RobloxUsername + " has deleted a post by " + message.author.name );
+    }
+  }
