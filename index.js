@@ -36,7 +36,7 @@ ROBLOX.login(BOT_USERNAME,BOT_PASSWORD).then(function() {
     if (containsKeyword == true) {
       ROBLOX.deleteWallPost({id:data.id, group:GROUPID}).catch(function(e) {
         console.log("[" + GROUPID + "] Error deleting post by " + data.author.name);
-        console.log("[" + GROUPID + "] LOG: " + e);
+        console.log("[" + GROUPID + "] " + e);
       });
       console.log("[" + GROUPID + "] Removed post by " + data.author.name);
     };
@@ -45,9 +45,9 @@ ROBLOX.login(BOT_USERNAME,BOT_PASSWORD).then(function() {
     var Posts = data.posts
     for ( var i = 0; i < data.posts.length; i ++ ){
       var containsKeyworld = false
-      var message = data.posts[i]
+      var message = data.posts[i].toLowerCase()
       for (let phase of KEYWORDS){
-        if (message.toLowerCase().search(phrase) == -1) {
+        if (message.search(phrase) == -1) {
           containsKeyword = true;
         }
       };
