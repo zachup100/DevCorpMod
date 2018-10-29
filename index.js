@@ -43,7 +43,6 @@ ROBLOX.login(BOT_USERNAME,BOT_PASSWORD).then(function() {
   });
   ROBLOX.getWall({group: GROUPID}).then(function(data){
     var Posts = data.posts
-    console.log(data.posts.length)
     for ( var i = 0; i < data.posts.length; i ++ ){
       var containsKeyworld = false
       var message = Posts[i]
