@@ -65,6 +65,7 @@ ROBLOX.login(BOT_USERNAME,BOT_PASSWORD).then(function() {
 
 
 function removeWallPosts() {
+  console.log("run function()")
   ROBLOX.login(BOT_USERNAME,BOT_PASSWORD).then(function() {
     ROBLOX.getWall({group: GROUPID}).then(function(data){
       var Posts = data.posts
@@ -88,4 +89,4 @@ function removeWallPosts() {
   });
 }
 
-setInterval(removeWallPosts, 60000);
+setInterval(removeWallPosts, 10000);
