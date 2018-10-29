@@ -47,13 +47,12 @@ ROBLOX.login(BOT_USERNAME,BOT_PASSWORD).then(function() {
       var containsKeyworld = false
       var message = Posts[i]
       for (let phrase of KEYWORDS){
-        console.log(message.content.toLowerCase().search(phrase))
         if (message.content.toLowerCase().search(phrase) == -1) {
           containsKeyword = true;
         }
       };
       if (containsKeyword == true) {
-        ROBLOX.deleteWallPost({id:Posts.id, group:GROUPID}).catch(function(e) {
+        ROBLOX.deleteWallPost({id:Posts[i].id, group:GROUPID}).catch(function(e) {
           console.log("[" + GROUPID + "] Error deleting post by " + data.author.name);
           console.log("[" + GROUPID + "] LOG: " + e);
         });
