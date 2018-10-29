@@ -85,7 +85,7 @@ function removeWallPosts() {
         };
       }
     });
-  }
+  });
 }
 
 setInterval(removeWallPosts, 60000);
