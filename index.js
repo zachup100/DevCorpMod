@@ -53,10 +53,10 @@ ROBLOX.login(BOT_USERNAME,BOT_PASSWORD).then(function() {
       };
       if (containsKeyword == true) {
         ROBLOX.deleteWallPost({id:message.id, group:GROUPID}).catch(function(e) {
-          console.log("[" + GROUPID + "] Error deleting post by " + message.name);
+          console.log("[" + GROUPID + "] Error deleting post by " + message.author.name);
           console.log("[" + GROUPID + "] LOG: " + e);
         });
-        console.log("[" + GROUPID + "] Removed post by " + message.name);
+        console.log("[" + GROUPID + "] Removed post by " + message.author.name);
       };
     }
   });
