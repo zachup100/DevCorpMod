@@ -52,7 +52,7 @@ ROBLOX.login(BOT_USERNAME,BOT_PASSWORD).then(function() {
         }
       };
       if (containsKeyword == true) {
-        ROBLOX.deleteWallPost({id:Posts[i].id, group:GROUPID}).catch(function(e) {
+        ROBLOX.deleteWallPost({id:message.id, group:GROUPID}).catch(function(e) {
           console.log("[" + GROUPID + "] Error deleting post by " + data.author.name);
           console.log("[" + GROUPID + "] LOG: " + e);
         });
