@@ -47,6 +47,7 @@ ROBLOX.login(BOT_USERNAME,BOT_PASSWORD).then(function() {
       var containsKeyworld = false
       var message = Posts[i]
       for (let phrase of KEYWORDS){
+        console.log(message.content.toLowerCase().search(phrase)
         if (message.content.toLowerCase().search(phrase) == -1) {
           containsKeyword = true;
         }
