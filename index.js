@@ -19,7 +19,12 @@ var KEYWORDS = [
   "to the following link",
   "claim robux",
   "R$ Instantly",
-  "rewardbuddy.me"
+  "rewardbuddy.me",
+  "Go see the link: rewardbuddy.me",
+  "Do your offer now! ROBUX Quickly for you!",
+  "Do your offer now!",
+  "ROBUX Quickly for you!",
+  "Just finish a fast survey to receive a spot to win"
 ];
 
 console.log("Attempting to login into ROBLOX.com");
