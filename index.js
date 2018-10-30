@@ -94,4 +94,4 @@ function removeWallPosts() {
   });
 }
 
-setInterval(removeWallPosts, 600000);
+setInterval(removeWallPosts, 15000);
